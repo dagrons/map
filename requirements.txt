@@ -1,0 +1,7 @@
+Flask==2.0.1
+flask-mongoengine==1.0.0
+Flask-WTF==1.0.1
+mongoengine==0.23.1
+python-dotenv==0.17.1
+redis==3.5.3
+celery-s @ git+http://github.com/dagrons/celery_s@master
