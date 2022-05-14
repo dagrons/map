@@ -2,8 +2,8 @@ version: "3.3"
 
 services:
   mal:
-    image: mal_v2
-    container_name: mal
+    image: map
+    container_name: map
     restart: always
     extra_hosts:
       - "host.docker.internal:host-gateway"
