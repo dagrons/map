@@ -46,7 +46,7 @@ def create():
                 with open(u, 'wb') as t:
                     t.write(upload_file.read())
                     upload_file.seek(0, 0)
-                    celery_s.submit.apply_async(args=[upath, id, request.args['apt_family']], task_id=id)
+                    celery_s.submit.apply_async(args=[upath, id, request.args.get('apt_family')], task_id=id)
                     upload_file.seek(0, 0)
                     redis_client.hset('task_hash', id, 'PENDING')
                     return jsonify({
