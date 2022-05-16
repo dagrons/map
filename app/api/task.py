@@ -21,6 +21,7 @@ def create():
     """
     # compute md5 f the file 
     upload_file = request.files['file']
+    apt_family = request.args.get("apt_family")
     id = compute_md5(upload_file)
     if not is_pe(upload_file):
         return jsonify({
@@ -46,9 +47,7 @@ def create():
                 with open(u, 'wb') as t:
                     t.write(upload_file.read())
                     upload_file.seek(0, 0)
-                    apt_family = request.args.get("apt_family")
-
-                    logging.info("submit task with id=%s, apt_family=%s", id, apt_family)
+                    current_app.logger.info("submit task with id=%s, apt_family=%s", id, apt_family)
                     celery_s.submit.apply_async(args=[upath, id, apt_family], task_id=id)
                     upload_file.seek(0, 0)
                     redis_client.hset('task_hash', id, 'PENDING')
