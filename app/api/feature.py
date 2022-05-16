@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, send_file, abort
 
-from app.models.feature import Feature
+from models.feature import Feature
 from app.handler import task as task_handler
 from app.handler import feature as feature_handler
 

@@ -1,7 +1,7 @@
 from redis import StrictRedis
 import os
 
-from app.models.feature import Feature
+from models.feature import Feature
 from app.handler.task import *
 from flask import current_app
 

@@ -1,6 +1,6 @@
 import numpy as np
 
-from app.models.feature import *
+from models.feature import *
 from app.handler import task as task_handler
 
 
