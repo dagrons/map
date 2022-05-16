@@ -1,10 +1,24 @@
-from flask import Blueprint, jsonify, send_file, abort
+from flask import Blueprint, jsonify, send_file, abort, request
 
 from fcommon.models.feature import Feature
 from app.handler import task as task_handler
 from app.handler import feature as feature_handler
 
 feature_bp = Blueprint('feature_bp', __name__)
+
+@feature_bp.route('/tag/<id>', methods=['GET'])
+def tag(id):
+    """
+    tag sample, 给样本打标签，作为对报告的一种patch，目前只支持apt_family
+    """
+    task_id = id
+    apt_family = request.args.get("apt_family")
+    if apt_family is not None:
+        Feature.objects(task_id=task_id).update(
+            set__apt_family = apt_family
+        )
+        return jsonify(success=True)
+    return abort(404)
 
 
 @feature_bp.route('/dashboard')

@@ -13,7 +13,6 @@ from mtools.compute_md5 import compute_md5
 
 task_bp = Blueprint('task_bp', __name__)
 
-
 @task_bp.route('/create', methods=['POST'])
 def create():
     """
